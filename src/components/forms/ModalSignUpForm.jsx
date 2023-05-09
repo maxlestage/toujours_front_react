@@ -128,11 +128,11 @@ function ModalSignUpForm(props) {
         </Modal>
         <CreateUser
           show={signUpStatus === "success"}
-          sharedStateClose={handlOkIsClose}
+          sharedStateCloseAction={handlOkIsClose}
         />
         <CreateUserErr
           show={signUpStatus === "error"}
-          sharedStateClose={handleErrIsClose}
+          sharedStateCloseAction={handleErrIsClose}
         />
       </div>
     </>
