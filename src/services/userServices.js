@@ -1,23 +1,30 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
 function userSignUp(data) {
   return axios({
     method: "POST",
     url: "http://0.0.0.0:7878/signup",
     data: data,
-  });
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return { message: err };
+    });
 }
 
 function userSignIn(data) {
   return axios({
     method: "POST",
-    url: "http://localhost:3000/signin",
+    url: "http://0.0.0.0:7878/signin",
     data: data,
   })
     .then((response) => {
-      return response.data;
+      console.log("response: ", response);
+      return response;
     })
     .catch((err) => {
       return { message: err };
