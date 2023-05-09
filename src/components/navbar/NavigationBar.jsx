@@ -9,13 +9,7 @@ function NavigationBar() {
   const handleSignupClose = () => setSignupShow(false);
   const handleSignupShow = () => setSignupShow(true);
 
-  // const [show, setShow] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(signupShow);
-
-  // }, [signupShow])
-  
   console.log("test", signupShow);
   return (
     <>
