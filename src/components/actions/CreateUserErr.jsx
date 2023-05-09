@@ -1,12 +1,12 @@
-import Modal from "react-bootstrap/Modal";
-
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 function CreateUserErr(props) {
-  const { show, handleSignupClose } = props;
+  const { show } = props;
+  console.log("show", show); // il vaut true
+
   return (
     <>
-      <Modal show={show} onHide={handleSignupClose} centered>
+      <Modal show={show} onHide={true} centered>
         <Modal.Header closeButton>
           <Modal.Title>Erreur</Modal.Title>
         </Modal.Header>
@@ -14,7 +14,10 @@ function CreateUserErr(props) {
           <p>Votre compte n'a pas pu être créé</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleSignupClose}>
+          <Button
+            variant="danger"
+            onClick={() => (show !== true ? false : null)}
+          >
             Fermer
           </Button>
         </Modal.Footer>

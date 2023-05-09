@@ -16,33 +16,24 @@ function ModalSignUpForm(props) {
     mail: "",
     password: "",
   });
-  const [isSignUpSuccess, setIsSignUpSuccess] = useState(null);
-  const [isSignUpError, setIsSignUpError] = useState(null);
+  const [signUpStatus, setSignUpStatus] = useState("initial");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSignUpStatus("pending");
     try {
       const response = await userSignUp(formData);
-      console.log("handle - response ", response);
       if (response.status === 201) {
-        setIsSignUpSuccess(true);
-
-        console.log("User successfully signed up!");
+        setSignUpStatus("success");
       } else {
-        setIsSignUpSuccess(false);
-        setIsSignUpError(true);
-        console.log("else error : ", response);
+        setSignUpStatus("error");
       }
     } catch (error) {
-      setIsSignUpSuccess(false);
-      setIsSignUpError(true);
-      console.error("ici", error);
+      setSignUpStatus("error");
     }
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("", name, value);
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -99,6 +90,11 @@ function ModalSignUpForm(props) {
                   variant="outline-success"
                   type="submit"
                   className="mt-5"
+                  onClick={() =>
+                    setTimeout(() => {
+                      handleSignupClose();
+                    }, "1000")
+                  }
                 >
                   Valider
                 </Button>
@@ -111,11 +107,14 @@ function ModalSignUpForm(props) {
             </Button>
           </Modal.Footer>
         </Modal>
-        {isSignUpSuccess ? (
-          <CreateUser show={isSignUpSuccess} onHide={handleSignupClose} />
-        ) : (
-          <CreateUserErr show={isSignUpError} onHide={handleSignupClose} />
-        )}
+        <CreateUser
+          show={signUpStatus === "success"}
+          // modalClose={handleSignupClose}
+        />
+        <CreateUserErr
+          show={signUpStatus === "error"}
+          // modalClose={handleSignupClose}
+        />
       </div>
     </>
   );

@@ -5,8 +5,8 @@ import { userSignIn } from "../../services/userServices";
 import "./css/modal.css";
 
 function ModalSignInForm(props) {
-  const { signupShow, handleSignupClose } = props;
-  console.log("testtest", signupShow);
+  const { signinShow, handleSigninClose } = props;
+
   const [formData, setFormData] = useState({
     mail: "",
     password: "",
@@ -16,7 +16,6 @@ function ModalSignInForm(props) {
     event.preventDefault();
     try {
       const response = await userSignIn(formData);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -24,7 +23,7 @@ function ModalSignInForm(props) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("", name, value);
+
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -35,7 +34,7 @@ function ModalSignInForm(props) {
 
   return (
     <>
-      <Modal show={signupShow} onHide={handleSignupClose} centered size="lg">
+      <Modal show={signinShow} onHide={handleSigninClose} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Se connecter</Modal.Title>
         </Modal.Header>
@@ -67,7 +66,7 @@ function ModalSignInForm(props) {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-danger" onClick={handleSignupClose}>
+          <Button variant="outline-danger" onClick={handleSigninClose}>
             Fermer
           </Button>
         </Modal.Footer>

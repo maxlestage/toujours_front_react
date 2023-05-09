@@ -15,24 +15,30 @@ function NavigationBar() {
   const handleSigninClose = () => setSigninShow(false);
   const handleSigninShow = () => setSigninShow(true);
 
-
-  console.log("test", signupShow);
   return (
     <>
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#home">Toujours Skateboarding Comp.</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link onClick={()=>handleSignupShow()}>S'inscrire</Nav.Link>
-            <Nav.Link onClick={()=>handleSigninShow()}>Se connecter</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-        <ModalSignUpForm  signupShow={signupShow} handleSignupClose={handleSignupClose} />
-        <ModalSignInForm className="" signupShow={signinShow} handleSignupClose={handleSigninClose} />
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">Toujours Skateboarding Comp.</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <Nav.Link onClick={() => handleSignupShow()}>S'inscrire</Nav.Link>
+              <Nav.Link onClick={() => handleSigninShow()}>
+                Se connecter
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <ModalSignUpForm
+        signupShow={signupShow}
+        handleSignupClose={handleSignupClose}
+      />
+      <ModalSignInForm
+        signinShow={signinShow}
+        handleSigninClose={handleSigninClose}
+      />
     </>
   );
 }

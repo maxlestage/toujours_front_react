@@ -1,6 +1,4 @@
-import Modal from "react-bootstrap/Modal";
-
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 function CreateUser(props) {
   const { show, handleSignupClose } = props;
