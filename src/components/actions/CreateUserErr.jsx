@@ -1,12 +1,11 @@
 import { Button, Modal } from "react-bootstrap";
 
 function CreateUserErr(props) {
-  const { show } = props;
-  console.log("show", show); // il vaut true
+  const { show, handleSignupClose } = props;
 
   return (
     <>
-      <Modal show={show} onHide={true} centered>
+      <Modal show={show} onHide={handleSignupClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Erreur</Modal.Title>
         </Modal.Header>
@@ -16,7 +15,7 @@ function CreateUserErr(props) {
         <Modal.Footer>
           <Button
             variant="danger"
-            onClick={() => (show !== true ? false : null)}
+            onClick={handleSignupClose}
           >
             Fermer
           </Button>

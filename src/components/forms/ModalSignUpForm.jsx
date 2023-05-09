@@ -18,6 +18,10 @@ function ModalSignUpForm(props) {
   });
   const [signUpStatus, setSignUpStatus] = useState("initial");
 
+  const hideModal = () => {
+    setSignUpStatus("initial");
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSignUpStatus("pending");
@@ -109,11 +113,11 @@ function ModalSignUpForm(props) {
         </Modal>
         <CreateUser
           show={signUpStatus === "success"}
-          // modalClose={handleSignupClose}
+          handleSignupClose={hideModal}
         />
         <CreateUserErr
           show={signUpStatus === "error"}
-          // modalClose={handleSignupClose}
+          handleSignupClose={hideModal}
         />
       </div>
     </>
