@@ -1,7 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useState } from "react";
 
-function ModalLoginForm() {
+function ModalLoginForm(props) {
+const { show, handleClose } = props;
   return (
     <>
       <Modal show={show} onHide={handleClose}>
