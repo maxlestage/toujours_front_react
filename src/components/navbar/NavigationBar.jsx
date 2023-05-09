@@ -1,13 +1,19 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ModalSignUpForm from "../forms/ModalSignUpForm";
+import ModalSignInForm from "../forms/ModalSignInForm";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function NavigationBar() {
   const [signupShow, setSignupShow] = useState(false);
   const handleSignupClose = () => setSignupShow(false);
   const handleSignupShow = () => setSignupShow(true);
+
+  const [signinShow, setSigninShow] = useState(false);
+  const handleSigninClose = () => setSigninShow(false);
+  const handleSigninShow = () => setSigninShow(true);
 
 
   console.log("test", signupShow);
@@ -20,14 +26,13 @@ function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link onClick={()=>handleSignupShow()}>S'inscrire</Nav.Link>
-            <Nav.Link >
-              Se connecter
-            </Nav.Link>
+            <Nav.Link onClick={()=>handleSigninShow()}>Se connecter</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-        <ModalSignUpForm signupShow={signupShow} handleSignupClose={handleSignupClose} />
+        <ModalSignUpForm  signupShow={signupShow} handleSignupClose={handleSignupClose} />
+        <ModalSignInForm className="" signupShow={signinShow} handleSignupClose={handleSigninClose} />
     </>
   );
 }

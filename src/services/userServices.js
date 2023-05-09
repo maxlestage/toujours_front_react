@@ -10,11 +10,10 @@ function userSignUp(data) {
   });
 }
 
-function userLogin(data) {
+function userSignIn(data) {
   return axios({
     method: "POST",
-
-    url: "http://localhost:3000/api/auth/login",
+    url: "http://localhost:3000/signin",
     data: data,
   })
     .then((response) => {
@@ -54,4 +53,4 @@ function userDelete(userId) {
   });
 }
 
-export { userLogin, userLogout, userSignUp, userEdit, userDelete };
+export { userSignIn, userLogout, userSignUp, userEdit, userDelete };
