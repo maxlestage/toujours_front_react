@@ -10,13 +10,9 @@ import CreateUserErr from "../actions/CreateUserErr";
 function ModalSignUpForm(props) {
   const { signupShow, handleSignupCloseAction } = props;
 
-  const [openErr, setOpenErr] = useState(false);
-  const handleErrIsClose = () => setOpenErr(false);
-  const handleErrIsOpen = () => setOpenErr(true);
-
-  const [openOk, setOpenOk] = useState(false);
-  const handlOkIsClose = () => setOpenOk(false);
-  const handlOkIsOpen = () => setOpenOk(true);
+  const hideModal = () => {
+    setSignUpStatus("initial");
+  };
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -128,11 +124,11 @@ function ModalSignUpForm(props) {
         </Modal>
         <CreateUser
           show={signUpStatus === "success"}
-          sharedStateCloseAction={handlOkIsClose}
+          sharedStateClose={hideModal}
         />
         <CreateUserErr
           show={signUpStatus === "error"}
-          sharedStateCloseAction={handleErrIsClose}
+          sharedStateCloseAction={hideModal}
         />
       </div>
     </>

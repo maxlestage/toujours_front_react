@@ -1,5 +1,5 @@
-import { Button, Modal } from "react-bootstrap";
-import { useState } from "react";
+import { Button, Modal, Alert } from "react-bootstrap";
+
 function CreateUserErr(props) {
   const { show, sharedStateCloseAction } = props;
 
@@ -10,17 +10,21 @@ function CreateUserErr(props) {
           <Modal.Title>Erreur</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Votre compte n'a pas pu être créé</p>
+          <Alert variant="danger">
+            <Alert.Heading>
+              Il semblerait que quelque chose se soit mal passé!
+            </Alert.Heading>
+            <p>Votre compte n'a pas pu être créé.</p>
+            <hr />
+            <br />
+            <small>
+              Si tu peux lire ce message, c'est que tu peux encore reprendre un
+              verre de plus.🍻
+            </small>
+          </Alert>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="danger"
-            onClick={() =>
-              setTimeout(() => {
-                sharedStateCloseAction();
-              }, "1000")
-            }
-          >
+          <Button variant="danger" onClick={sharedStateCloseAction}>
             Fermer
           </Button>
         </Modal.Footer>

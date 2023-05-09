@@ -5,7 +5,7 @@ import { userSignIn } from "../../services/userServices";
 import "./css/modal.css";
 
 function ModalSignInForm(props) {
-  const { signinShow, handleSigninClose } = props;
+  const { signinShow, handleSigninCloseAction } = props;
 
   const [formData, setFormData] = useState({
     mail: "",
@@ -34,7 +34,12 @@ function ModalSignInForm(props) {
 
   return (
     <>
-      <Modal show={signinShow} onHide={handleSigninClose} centered size="lg">
+      <Modal
+        show={signinShow}
+        onHide={handleSigninCloseAction}
+        centered
+        size="lg"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Se connecter</Modal.Title>
         </Modal.Header>
@@ -66,7 +71,7 @@ function ModalSignInForm(props) {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-danger" onClick={handleSigninClose}>
+          <Button variant="outline-danger" onClick={handleSigninCloseAction}>
             Fermer
           </Button>
         </Modal.Footer>
