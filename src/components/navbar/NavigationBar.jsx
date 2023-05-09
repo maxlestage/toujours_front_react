@@ -33,11 +33,11 @@ function NavigationBar() {
       </Navbar>
       <ModalSignUpForm
         signupShow={signupShow}
-        handleSignupClose={handleSignupClose}
+        handleSignupCloseAction={handleSignupClose}
       />
       <ModalSignInForm
         signinShow={signinShow}
-        handleSigninClose={handleSigninClose}
+        handleSigninCloseAction={handleSigninClose}
       />
     </>
   );

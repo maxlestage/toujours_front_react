@@ -8,7 +8,15 @@ import CreateUser from "../actions/CreateUser";
 import CreateUserErr from "../actions/CreateUserErr";
 
 function ModalSignUpForm(props) {
-  const { signupShow, handleSignupClose } = props;
+  const { signupShow, handleSignupCloseAction } = props;
+
+  const [openErr, setOpenErr] = useState(false);
+  const handleErrIsClose = () => setOpenErr(false);
+  const handleErrIsOpen = () => setOpenErr(true);
+
+  const [openOk, setOpenOk] = useState(false);
+  const handlOkIsClose = () => setOpenOk(false);
+  const handlOkIsOpen = () => setOpenOk(true);
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -23,17 +31,23 @@ function ModalSignUpForm(props) {
     setSignUpStatus("pending");
     try {
       const response = await userSignUp(formData);
+      console.log("handle - response ", response);
       if (response.status === 201) {
         setSignUpStatus("success");
+
+        console.log("User successfully signed up!");
       } else {
         setSignUpStatus("error");
+        console.log("else error : ", response);
       }
     } catch (error) {
       setSignUpStatus("error");
+      console.error("ici", error);
     }
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log("", name, value);
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -43,7 +57,12 @@ function ModalSignUpForm(props) {
   return (
     <>
       <div className="mx-auto mt-10">
-        <Modal show={signupShow} onHide={handleSignupClose} centered size="lg">
+        <Modal
+          show={signupShow}
+          onHide={handleSignupCloseAction}
+          centered
+          size="lg"
+        >
           <Modal.Header closeButton>
             <Modal.Title>S'inscrire</Modal.Title>
           </Modal.Header>
@@ -92,7 +111,7 @@ function ModalSignUpForm(props) {
                   className="mt-5"
                   onClick={() =>
                     setTimeout(() => {
-                      handleSignupClose();
+                      handleSignupCloseAction();
                     }, "1000")
                   }
                 >
@@ -102,18 +121,18 @@ function ModalSignUpForm(props) {
             </Container>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-danger" onClick={handleSignupClose}>
+            <Button variant="outline-danger" onClick={handleSignupCloseAction}>
               Fermer
             </Button>
           </Modal.Footer>
         </Modal>
         <CreateUser
           show={signUpStatus === "success"}
-          // modalClose={handleSignupClose}
+          sharedStateClose={handlOkIsClose}
         />
         <CreateUserErr
           show={signUpStatus === "error"}
-          // modalClose={handleSignupClose}
+          sharedStateClose={handleErrIsClose}
         />
       </div>
     </>
