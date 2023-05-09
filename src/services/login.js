@@ -42,7 +42,6 @@ function userEdit(data, userId) {
 function userLogout() {
   return axios({
     method: "DELETE",
-
     url: "http://localhost:3000/api/auth/logout",
   });
 }
