@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/navbar/NavigationBar";
-import LoginForm from "./components/forms/login_form";
+import LoginForm from "./components/forms/loginForm";
 
 function App() {
   return (
