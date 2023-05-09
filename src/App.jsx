@@ -1,15 +1,16 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/navbar/NavigationBar";
-import LoginForm from "./components/forms/loginForm";
+import ModalSignUpForm from "./components/forms/ModalSignUpForm";
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <NavigationBar />
-        <LoginForm />
       </header>
+      <ModalSignUpForm/>
     </div>
   );
 }
