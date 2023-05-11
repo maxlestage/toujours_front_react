@@ -124,7 +124,7 @@ function ModalSignUpForm(props) {
         </Modal>
         <CreateUser
           show={signUpStatus === "success"}
-          sharedStateClose={hideModal}
+          sharedStateCloseAction={hideModal}
         />
         <CreateUserErr
           show={signUpStatus === "error"}

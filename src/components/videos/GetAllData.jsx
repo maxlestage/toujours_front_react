@@ -12,13 +12,11 @@ function GetAllData() {
     });
   }, []);
 
-  console.log("Posts", posts);
-
   return (
     <Row xs={2} md={3} lg={4} className="g-4 justify-content-md-center my-5">
       {posts.slice(0).map((post, idx) => (
         <Col key={idx} className="mx-4">
-          <Card border="dark" className="mb-2" style={{ height: "100%" }}>
+          <Card className="mb-2" style={{ height: "100%" }}>
             <Card.Header className="text-center">
               {post.video_name
                 .replace(/&#039; &quot;/g, " ")

@@ -20,7 +20,7 @@ function userSignIn(data) {
   return axios({
     method: "POST",
     url: "http://0.0.0.0:7878/signin",
-    data: data,
+    data,
   })
     .then((response) => {
       console.log("response: ", response);
