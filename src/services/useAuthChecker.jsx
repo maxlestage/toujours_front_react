@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import sharedState from "../../services/sharedState";
+import { useState, useEffect } from "react";
+import sharedState from "./sharedState";
 
-function AuthChecker() {
+function useAuthChecker() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -16,15 +16,7 @@ function AuthChecker() {
     setIsLoggedIn(!!token);
   }, [isLoggedIn]);
 
-  return (
-    <div>
-      {isLoggedIn ? (
-        <p>Utilisateur connecté</p>
-      ) : (
-        <p>Utilisateur non connecté</p>
-      )}
-    </div>
-  );
+  return isLoggedIn;
 }
 
-export default AuthChecker;
+export default useAuthChecker;

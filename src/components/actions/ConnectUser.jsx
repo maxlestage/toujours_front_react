@@ -6,10 +6,10 @@ function ConnectUser(props) {
     <>
       <Modal show={show} onHide={sharedStateCloseAction} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Compte créé</Modal.Title>
+          <Modal.Title>Tout à fonctionné!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Votre compte a bien été créé !</p>
+          <p>Vous êtes connecté.</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={sharedStateCloseAction}>
