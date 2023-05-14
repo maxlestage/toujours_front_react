@@ -5,6 +5,7 @@ import { userSignIn } from "../../services/userServices";
 import "./css/modal.css";
 import ConnectUser from "../actions/ConnectUser";
 import ConnectUserErr from "../actions/ConnectUserErr";
+import useAuthChecker from "../../services/useAuthChecker";
 
 function ModalSignInForm(props) {
   const { signinShow, handleSigninCloseAction } = props;
@@ -15,6 +16,7 @@ function ModalSignInForm(props) {
   });
 
   const [signInStatus, setSignInStatus] = useState("initial");
+  const { updateSharedStateBearer } = useAuthChecker();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,10 +24,11 @@ function ModalSignInForm(props) {
       const response = await userSignIn(formData);
       if (response.status === 200) {
         setSignInStatus("success");
-        console.log("User successfully signed in!");
+        console.log("Utilisateur connecté!");
+        updateSharedStateBearer(response.token);
       } else {
         setSignInStatus("error");
-        console.log("Sign in failed!");
+        console.log("SLoupé faudra recommancer...");
       }
     } catch (error) {
       setSignInStatus("error");

@@ -1,11 +1,9 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Navbar, Nav, Badge, Container } from "react-bootstrap";
 import { useState } from "react";
 import ModalSignUpForm from "../forms/ModalSignUpForm";
 import ModalSignInForm from "../forms/ModalSignInForm";
-import "bootstrap/dist/css/bootstrap.min.css";
-import useAuthChecker from "../../services/useAuthChecker.jsx";
+
+import useAuthChecker from "../../services/useAuthChecker";
 
 function NavigationBar() {
   const [signupShow, setSignupShow] = useState(false);
@@ -17,12 +15,15 @@ function NavigationBar() {
   const handleSigninShow = () => setSigninShow(true);
 
   const isLoggedIn = useAuthChecker();
-  console.log("isLoggedIn: ", isLoggedIn);
 
-  function logout() {
+  const isOk = isLoggedIn.isLoggedIn;
+
+  const logout = () => {
     localStorage.removeItem("token");
     window.location.reload();
-  }
+  };
+
+  // console.log("isLoggedIn: >>>>>>>>>>>>>>>", isLoggedIn.isLoggedIn);
 
   return (
     <>
@@ -32,12 +33,12 @@ function NavigationBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              {isLoggedIn ? (
+              {isOk ? (
                 <>
-                  <Nav.Link onClick={() => handleSignupShow()}>
-                    Utilisateur connecté
+                  <Nav.Link>
+                    <Badge bg="success">Utilisateur connecté</Badge>
                   </Nav.Link>
-                  <Nav.Link onClick={logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={logout}>Se déconnecter</Nav.Link>
                 </>
               ) : (
                 <>

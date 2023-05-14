@@ -25,9 +25,7 @@ function userSignIn(data) {
     data,
   })
     .then((response) => {
-      console.log("response: ", response.data.Bearer);
       sharedState.setToken(response.data.Bearer);
-      console.log("sharedState: ", sharedState);
       return response;
     })
     .catch((err) => {
@@ -49,12 +47,12 @@ function userEdit(data, userId) {
     });
 }
 
-function userLogout() {
-  return axios({
-    method: "DELETE",
-    url: "http://localhost:3000/api/auth/logout",
-  });
-}
+// function userLogout() {
+//   return axios({
+//     method: "DELETE",
+//     url: "http://localhost:3000/api/auth/logout",
+//   });
+// }
 
 function userDelete(userId) {
   return axios({
@@ -64,4 +62,4 @@ function userDelete(userId) {
   });
 }
 
-export { userSignIn, userLogout, userSignUp, userEdit, userDelete };
+export { userSignIn, /* userLogout */ userSignUp, userEdit, userDelete };

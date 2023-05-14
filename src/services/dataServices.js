@@ -1,11 +1,11 @@
 import axios from "axios";
-import sharedState from "./sharedState";
+
+const token = localStorage.getItem("token");
 axios.defaults.withCredentials = false;
 
-// Home page
 function getLatestVideosFromThrasher() {
   return axios({
-    method: "get",
+    method: "GET",
     url: "http://0.0.0.0:7878/",
   })
     .then((response) => {
@@ -19,15 +19,15 @@ function getLatestVideosFromThrasher() {
 
 function getAllData() {
   return axios({
-    method: "get",
-    url: "http://0.0.0.0:7878/data",
+    method: "GET",
+    url: "http://0.0.0.0:7878/data/",
     headers: {
-      Authorization: `Bearer ${sharedState.Bearer}`,
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
   })
     .then((response) => {
-      console.log("getAllData: ", response);
-
+      console.log(response.data);
       return response;
     })
     .catch((err) => {
