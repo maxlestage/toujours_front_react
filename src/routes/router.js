@@ -7,6 +7,11 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/data",
+    element: <App />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 export default router;

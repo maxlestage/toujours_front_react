@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Form, Container, Button } from "react-bootstrap";
 import { userSignIn } from "../../services/userServices";
 import "./css/modal.css";
+import ConnectUser from "../actions/ConnectUser";
+import ConnectUserErr from "../actions/ConnectUserErr";
 
 function ModalSignInForm(props) {
   const { signinShow, handleSigninCloseAction } = props;
@@ -12,11 +14,21 @@ function ModalSignInForm(props) {
     password: "",
   });
 
+  const [signInStatus, setSignInStatus] = useState("initial");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await userSignIn(formData);
+      if (response.status === 200) {
+        setSignInStatus("success");
+        console.log("User successfully signed in!");
+      } else {
+        setSignInStatus("error");
+        console.log("Sign in failed!");
+      }
     } catch (error) {
+      setSignInStatus("error");
       console.error(error);
     }
   };
@@ -30,7 +42,9 @@ function ModalSignInForm(props) {
     }));
   };
 
-  console.log();
+  const hideModal = () => {
+    setSignInStatus("initial");
+  };
 
   return (
     <>
@@ -64,7 +78,16 @@ function ModalSignInForm(props) {
                 placeholder="Exemple: azertylolf4i5p4sç41o!"
               />
               <br />
-              <Button variant="outline-success" type="submit" className="mt-5">
+              <Button
+                variant="outline-success"
+                type="submit"
+                className="mt-5"
+                onClick={() =>
+                  setTimeout(() => {
+                    handleSigninCloseAction();
+                  }, "1000")
+                }
+              >
                 Valider
               </Button>
             </Form>
@@ -76,6 +99,14 @@ function ModalSignInForm(props) {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ConnectUser
+        show={signInStatus === "success"}
+        sharedStateCloseAction={hideModal}
+      />
+      <ConnectUserErr
+        show={signInStatus === "error"}
+        sharedStateCloseAction={hideModal}
+      />
     </>
   );
 }

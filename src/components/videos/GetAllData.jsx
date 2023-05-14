@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Row, Card, Col } from "react-bootstrap";
+import { Row, Card, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { getAllData } from "../../services/dataServices";
+import { getLatestVideosFromThrasher } from "../../services/dataServices";
 
-function GetAllData() {
+function GetLatestVideosFromThrasher() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getAllData().then((response) => {
+    getLatestVideosFromThrasher().then((response) => {
       setPosts(response.data);
     });
   }, []);
@@ -44,4 +44,4 @@ function GetAllData() {
   );
 }
 
-export default GetAllData;
+export default GetLatestVideosFromThrasher;

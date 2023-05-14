@@ -1,4 +1,5 @@
 import axios from "axios";
+import sharedState from "./sharedState";
 
 axios.defaults.withCredentials = false;
 
@@ -9,6 +10,7 @@ function userSignUp(data) {
     data: data,
   })
     .then((response) => {
+      console.log("response: ", response);
       return response;
     })
     .catch((err) => {
@@ -23,7 +25,9 @@ function userSignIn(data) {
     data,
   })
     .then((response) => {
-      console.log("response: ", response);
+      console.log("response: ", response.data.Bearer);
+      sharedState.setToken(response.data.Bearer);
+      console.log("sharedState: ", sharedState);
       return response;
     })
     .catch((err) => {
