@@ -3,9 +3,13 @@ import { useState } from "react";
 import ModalSignUpForm from "../forms/ModalSignUpForm";
 import ModalSignInForm from "../forms/ModalSignInForm";
 
-import useAuthChecker from "../../services/useAuthChecker";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { userConnectionState } from "../../recoil_state";
 
 function NavigationBar() {
+  const [userConnection, setUserConnection] =
+    useRecoilState(userConnectionState);
+  const setUserConnectionValue = useSetRecoilState(userConnectionState);
   const [signupShow, setSignupShow] = useState(false);
   const handleSignupClose = () => setSignupShow(false);
   const handleSignupShow = () => setSignupShow(true);
@@ -14,16 +18,10 @@ function NavigationBar() {
   const handleSigninClose = () => setSigninShow(false);
   const handleSigninShow = () => setSigninShow(true);
 
-  const isLoggedIn = useAuthChecker();
-
-  const isOk = isLoggedIn.isLoggedIn;
-
   const logout = () => {
     localStorage.removeItem("token");
-    window.location.reload();
+    setUserConnectionValue(false);
   };
-
-  // console.log("isLoggedIn: >>>>>>>>>>>>>>>", isLoggedIn.isLoggedIn);
 
   return (
     <>
@@ -33,7 +31,7 @@ function NavigationBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              {isOk ? (
+              {userConnection ? (
                 <>
                   <Nav.Link>
                     <Badge bg="success">Utilisateur connecté</Badge>

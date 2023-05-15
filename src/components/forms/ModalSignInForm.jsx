@@ -6,8 +6,12 @@ import "./css/modal.css";
 import ConnectUser from "../actions/ConnectUser";
 import ConnectUserErr from "../actions/ConnectUserErr";
 import useAuthChecker from "../../services/useAuthChecker";
+import { userConnectionState } from "../../recoil_state";
+import { useSetRecoilState } from "recoil";
 
 function ModalSignInForm(props) {
+  const setUserConnection = useSetRecoilState(userConnectionState);
+
   const { signinShow, handleSigninCloseAction } = props;
 
   const [formData, setFormData] = useState({
@@ -16,7 +20,7 @@ function ModalSignInForm(props) {
   });
 
   const [signInStatus, setSignInStatus] = useState("initial");
-  const { updateSharedStateBearer } = useAuthChecker();
+  // const { updateSharedStateBearer } = useAuthChecker();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,11 +28,13 @@ function ModalSignInForm(props) {
       const response = await userSignIn(formData);
       if (response.status === 200) {
         setSignInStatus("success");
+        localStorage.setItem("token", response.data.Bearer);
+        setUserConnection(true); // recoil
+        console.log("response.token:>>>>>>> ", response.data.Bearer);
         console.log("Utilisateur connecté!");
-        updateSharedStateBearer(response.token);
       } else {
         setSignInStatus("error");
-        console.log("SLoupé faudra recommancer...");
+        console.log("Loupé faudra recommancer...");
       }
     } catch (error) {
       setSignInStatus("error");
