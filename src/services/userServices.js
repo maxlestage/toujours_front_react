@@ -25,6 +25,7 @@ function userSignIn(data) {
     data,
   })
     .then((response) => {
+      console.log(response.data);
       sharedState.setToken(response.data.Bearer);
       return response;
     })

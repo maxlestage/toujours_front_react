@@ -5,7 +5,6 @@ import { userSignIn } from "../../services/userServices";
 import "./css/modal.css";
 import ConnectUser from "../actions/ConnectUser";
 import ConnectUserErr from "../actions/ConnectUserErr";
-import useAuthChecker from "../../services/useAuthChecker";
 import { userConnectionState } from "../../recoil_state";
 import { useSetRecoilState } from "recoil";
 
@@ -20,7 +19,6 @@ function ModalSignInForm(props) {
   });
 
   const [signInStatus, setSignInStatus] = useState("initial");
-  // const { updateSharedStateBearer } = useAuthChecker();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,7 +26,9 @@ function ModalSignInForm(props) {
       const response = await userSignIn(formData);
       if (response.status === 200) {
         setSignInStatus("success");
+        let dataUser = response.data.user;
         localStorage.setItem("token", response.data.Bearer);
+        localStorage.setItem("user", JSON.stringify(dataUser));
         setUserConnection(true); // recoil
         console.log("response.token:>>>>>>> ", response.data.Bearer);
         console.log("Utilisateur connecté!");

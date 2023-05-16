@@ -23,6 +23,9 @@ function NavigationBar() {
     setUserConnectionValue(false);
   };
 
+  let userData = localStorage.getItem("user");
+  let parseUserData = JSON.parse(userData);
+
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -34,7 +37,9 @@ function NavigationBar() {
               {userConnection ? (
                 <>
                   <Nav.Link>
-                    <Badge bg="success">Utilisateur connecté</Badge>
+                    <Badge bg="success">
+                      {parseUserData.firstname} {parseUserData.lastname}
+                    </Badge>
                   </Nav.Link>
                   <Nav.Link onClick={logout}>Se déconnecter</Nav.Link>
                 </>
