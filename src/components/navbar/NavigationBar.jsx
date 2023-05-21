@@ -20,6 +20,7 @@ function NavigationBar() {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUserConnectionValue(false);
   };
 
@@ -30,13 +31,13 @@ function NavigationBar() {
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Toujours Skateboarding Comp.</Navbar.Brand>
+          <Navbar.Brand href="/">Toujours Skateboarding Comp.</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {userConnection ? (
                 <>
-                  <Nav.Link href="mydata">
+                  <Nav.Link href="data">
                     <Badge bg="success">
                       {parseUserData.firstname} {parseUserData.lastname}
                     </Badge>

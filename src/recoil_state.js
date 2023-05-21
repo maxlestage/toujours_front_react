@@ -5,4 +5,9 @@ const userConnectionState = atom({
   default: false,
 });
 
-export { userConnectionState };
+const addNewPost = atom({
+  key: "addingNewPost",
+  default: false,
+});
+
+export { userConnectionState, addNewPost };

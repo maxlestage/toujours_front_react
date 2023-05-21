@@ -3,21 +3,21 @@ import { Row, Card, Col } from "react-bootstrap";
 import { getAllData } from "../../services/dataServices";
 import postsData from "./dataSet";
 
-function GetAllData() {
+function GetDataByUserId() {
   const user = localStorage.getItem("user");
   const userParseData = JSON.parse(user);
   const userId = userParseData.id;
   const [posts, setPosts] = useState([]);
 
-  // let filteredByUserID = [];
+  let filteredByUserID = [];
 
-  // function filterByUserID(data) {
-  //   data.map((d) => {
-  //     if (d.user_id === userId) {
-  //       filteredByUserID.push(d);
-  //     }
-  //   });
-  // }
+  function filterByUserID(data) {
+    data.map((d) => {
+      if (d.user_id === userId) {
+        filteredByUserID.push(d);
+      }
+    });
+  }
 
   useEffect(() => {
     getAllData().then((response) => {
@@ -27,8 +27,8 @@ function GetAllData() {
       if (data.length <= 0) {
         setPosts(postsData);
       } else {
-        // filterByUserID(data);
-        setPosts(data);
+        filterByUserID(data);
+        setPosts(filteredByUserID);
       }
     });
   }, []);
@@ -63,4 +63,4 @@ function GetAllData() {
   );
 }
 
-export default GetAllData;
+export default GetDataByUserId;

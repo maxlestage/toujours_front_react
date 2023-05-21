@@ -7,6 +7,8 @@ import GetAllData from "./components/videos/GetAllData";
 import { userConnectionState } from "./recoil_state";
 import { useEffect } from "react";
 import NewPostForm from "./components/forms/NewPostForm";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/router";
 
 function App() {
   const [userConnection, setUserConnection] =
@@ -28,8 +30,9 @@ function App() {
       </header>
       {userConnection ? (
         <>
-          <GetAllData />
-          <NewPostForm />
+          {/* <GetAllData /> */}
+          {/* <NewPostForm /> */}
+          <RouterProvider router={router} />
         </>
       ) : (
         <>
