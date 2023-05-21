@@ -30,11 +30,8 @@ function ModalSignInForm(props) {
         localStorage.setItem("token", response.data.Bearer);
         localStorage.setItem("user", JSON.stringify(dataUser));
         setUserConnection(true); // recoil
-        console.log("response.token:>>>>>>> ", response.data.Bearer);
-        console.log("Utilisateur connecté!");
       } else {
         setSignInStatus("error");
-        console.log("Loupé faudra recommancer...");
       }
     } catch (error) {
       setSignInStatus("error");

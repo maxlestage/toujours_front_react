@@ -2,13 +2,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Card, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { getAllData } from "../../services/dataServices";
+import postsData from "./dataSet";
 
 function GetAllData() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     getAllData().then((response) => {
-      setPosts(response.data);
+      let data = response.data;
+
+      if (data.lenth <= 0) {
+        setPosts(postsData);
+      }
+
+      setPosts(data);
     });
   }, []);
 

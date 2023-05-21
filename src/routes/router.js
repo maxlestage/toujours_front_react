@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/data",
+    path: "/mydata",
     element: <App />,
     errorElement: <ErrorPage />,
   },

@@ -36,7 +36,7 @@ function NavigationBar() {
             <Nav className="ms-auto">
               {userConnection ? (
                 <>
-                  <Nav.Link>
+                  <Nav.Link href="mydata">
                     <Badge bg="success">
                       {parseUserData.firstname} {parseUserData.lastname}
                     </Badge>

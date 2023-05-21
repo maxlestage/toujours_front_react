@@ -9,7 +9,6 @@ function getLatestVideosFromThrasher() {
     url: "http://0.0.0.0:7878/",
   })
     .then((response) => {
-      console.log("getLatestVideosFromThrasher: ", response);
       return response;
     })
     .catch((err) => {
@@ -27,7 +26,6 @@ function getAllData() {
     },
   })
     .then((response) => {
-      console.log(response.data);
       return response;
     })
     .catch((err) => {
@@ -35,4 +33,22 @@ function getAllData() {
     });
 }
 
-export { getLatestVideosFromThrasher, getAllData };
+function postNewData(data) {
+  return axios({
+    method: "POST",
+    url: "http://0.0.0.0:7878/data",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    data: data,
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return { message: err };
+    });
+}
+
+export { getLatestVideosFromThrasher, getAllData, postNewData };

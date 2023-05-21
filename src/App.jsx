@@ -7,6 +7,7 @@ import GetAllData from "./components/videos/GetAllData";
 import useAuthChecker from "./services/useAuthChecker";
 import { userConnectionState } from "./recoil_state";
 import { useEffect } from "react";
+import NewPostForm from "./components/forms/NewPostForm";
 
 function App() {
   const [userConnection, setUserConnection] =
@@ -29,6 +30,7 @@ function App() {
       {userConnection ? (
         <>
           <GetAllData />
+          <NewPostForm />
         </>
       ) : (
         <>

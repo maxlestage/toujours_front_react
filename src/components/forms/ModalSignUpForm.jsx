@@ -27,14 +27,11 @@ function ModalSignUpForm(props) {
     setSignUpStatus("pending");
     try {
       const response = await userSignUp(formData);
-      console.log("handle - response ", response);
+
       if (response.status === 201) {
         setSignUpStatus("success");
-
-        console.log("User successfully signed up!");
       } else {
         setSignUpStatus("error");
-        console.log("else error : ", response);
       }
     } catch (error) {
       setSignUpStatus("error");
@@ -43,7 +40,6 @@ function ModalSignUpForm(props) {
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("", name, value);
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
