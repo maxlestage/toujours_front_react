@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/navbar/NavigationBar";
 import GetLatestVideosFromThrasher from "./components/videos/GetLatestVideosFromThrasher";
 import GetAllData from "./components/videos/GetAllData";
-import useAuthChecker from "./services/useAuthChecker";
 import { userConnectionState } from "./recoil_state";
 import { useEffect } from "react";
 import NewPostForm from "./components/forms/NewPostForm";
