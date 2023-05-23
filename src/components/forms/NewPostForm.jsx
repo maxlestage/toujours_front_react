@@ -45,6 +45,7 @@ const NewPostForm = () => {
 
   useEffect(() => {
     if (isFormSubmitted) {
+      window.location.reload();
       setIsFormSubmitted(false); // Réinitialiser l'état du formulaire soumis
     }
   }, [isFormSubmitted]);
